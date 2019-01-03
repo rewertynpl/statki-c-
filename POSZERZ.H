@@ -1,0 +1,439 @@
+
+
+
+
+
+
+
+
+#include "wart01.h"
+#include "wart02.h"
+
+
+int poszerz(char planszakomp01[][10],int x2, int y2,int *ey01,int *ex01,int *ey11,int *ex11,int licz1,int mniejx11,int mniejy11,int mniejxp11,int mniejyp11);
+
+
+void modulzakresu (char planszakomp011[][10],int x21, int y21,int *ey011,int *ex011,int *ey111,int *ex111,int *licz11,int mniejx21,int mniejy21,int mniejxp21,int mniejyp21);
+
+
+void modulpowiekszania (char planszakomp011[][10],int x21, int y21,int *ey011,int *ex011,int *ey111,int *ex111);
+
+
+
+//------------------------------------------------------------------------------------------------------
+//------------//rozszerzamy plansze poszukiwania (sprawdzen)//------------------------------------------
+//-------------------	 Sluzy nam w celu ustawienia wielkosci -----------------------------------------
+//---------	z ktora bedziemy sprawdzac czy zostal juz zatopiny--------------------------------------
+//---------	okreslony statek (bo kazdy statek zajmuje inna powierzchnie na planszy------------------
+//---------	czyli posluzymy sie w tym celu plansza  juz wypelniona (na ktorej sie ustawialo statki)-
+//---------	i sprawdzimy w jakim miejscu znajduja sie statki (sprawdzamy tylko sasiednie punkty)----
+//---------	za punkt odniesienia przyjmujemy miejsce aktualnego strzalu-----------------------------
+//------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
+
+
+
+int poszerz(char planszakomp01[][10],int x2, int y2,int *ey01,int *ex01,int *ey11,int *ex11, int licz1,int mniejx11,int mniejy11,int mniejxp11,int mniejyp11)
+	{
+
+
+
+
+//printf("int poszerz()\n");getch();
+
+//printf("licz1=%d\n",licz1);
+
+//getch();
+
+										
+			if(licz1==2)	//bo tu bedziemy na poczatku poszerzac o jedna kolumne lub wiersz				
+			{							
+				
+					licz1=0;
+
+			/*funkcja*/		modulpowiekszania (planszakomp01,x2,y2,ey01,ex01,ey11,ex11);	
+					
+			/*funkcja*/		modulzakresu (planszakomp01,x2,y2,ey01,ex01,ey11,ex11,&licz1,mniejx11,mniejy11,mniejxp11,mniejyp11);
+					// teraz za pomoca tych dwoch modolow uzyskamy nowy (licz1)
+			
+								if(licz1==2)											
+									{
+					
+									//printf("\t \n  if(licz1==2)  Drugi raz wyszlo ze licz jest rowne 2 wiec wiemy ze to bedzie dwumasztowiec\n");	getch();	getch();
+										
+									return 2;
+									}	
+																					
+								else 
+									{
+																			
+									licz1=0;
+
+								/*funkcja*/	modulpowiekszania (planszakomp01,x2,y2,ey01,ex01,ey11,ex11);	
+				
+								/*funkcja*/	modulzakresu (planszakomp01,x2,y2,ey01,ex01,ey11,ex11,&licz1,mniejx11,mniejy11,mniejxp11,mniejyp11);
+									// teraz za pomoca tych dwoch modolow uzyskamy nowy (licz1)
+			
+									}										
+									
+									if(licz1==3)
+									{
+									
+									//printf("\t \n  if(licz1==3)  Drugi raz wyszlo ze licz jest rowne 3 wiec wiemy ze to bedzie TRZYmasztowiec\n");	getch();	getch();	
+									return 3;
+									}
+																		
+									else 
+									{
+									
+									licz1=0;
+								/*funkcja*/	modulpowiekszania (planszakomp01,x2,y2,ey01,ex01,ey11,ex11);	
+					
+								/*funkcja*/	modulzakresu (planszakomp01,x2,y2,ey01,ex01,ey11,ex11,&licz1,mniejx11,mniejy11,mniejxp11,mniejyp11);
+										
+									}
+									 if(licz1==4)
+									{
+										
+									//printf("\t \n  if(licz1==4)  PIERWSZY raz wyszlo ze licz jest rowne 4 wiec wiemy ze to bedzie CZTEROmasztowiec\n");	getch();	getch();	
+									//printf("\t \n WIEMY dlatego ze nie ma juz wiekszych statkow\n");	getch();	getch();	
+									
+									return 4;	
+									}	
+									else
+									{
+									//printf(" dlaczego licz1 = %d\n",licz1);
+									licz1=0;
+									//printf("if(licz1==2) licz jest wiecej niz 4  TAK NIE MOZE BYC\n");getch();
+									}
+									
+											
+			}	//koniec	if(licz1==2)
+				
+															
+			else	// poczatek elsexx5
+			{	
+						
+						
+							
+								
+							
+							
+																	
+				if(licz1==3)	// a tutaj bedziemy na poczatku poszerzac o 2 kolumny lub wiersze					
+					{
+					
+					
+					licz1=0;
+							
+					//tylko w tym miejscu nalerzy modyfikowac dwa parametry na raz	
+									
+				/*funkcja*/	modulpowiekszania (planszakomp01,x2,y2,ey01,ex01,ey11,ex11);	
+					
+				/*funkcja*/	modulzakresu (planszakomp01,x2,y2,ey01,ex01,ey11,ex11,&licz1,mniejx11,mniejy11,mniejxp11,mniejyp11);
+					// teraz za pomoca tych dwoch modolow uzyskamy nowy (licz1)
+			
+								if(licz1==3)											
+									{
+					
+									//printf("\t \n  if(licz1==3)  Drugi raz wyszlo ze licz jest rowne 3 wiec wiemy ze to bedzie TRZYmasztowiec\n");	getch();	getch();
+
+									return 3;
+									}	
+																					
+								else 
+									{
+																			
+									licz1=0;
+									
+									
+								/*funkcja*/	modulpowiekszania (planszakomp01,x2,y2,ey01,ex01,ey11,ex11);	
+							
+								/*funkcja*/	modulzakresu (planszakomp01,x2,y2,ey01,ex01,ey11,ex11,&licz1,mniejx11,mniejy11,mniejxp11,mniejyp11);
+									// teraz za pomoca tych dwoch modolow uzyskamy nowy (licz1)
+			
+									}				
+									
+									if(licz1==4)			
+													
+									{		
+										
+									//printf("\t \n  if(licz1==4)  PIERWSZY raz wyszlo ze licz jest rowne 4 wiec wiemy ze to bedzie CZTEROmasztowiec\n");	getch();	getch();	
+									//printf("\t \n WIEMY dlatego ze nie ma juz wiekszych statkow\n");	getch();	getch();	
+											
+									return 4;			
+									}				
+														
+									else
+									{
+									//printf(" dlaczego licz1 = %d\n",licz1);
+									licz1=0;
+									//printf("if(licz1==3) licz jest wiecej niz 4  TAK NIE MOZE BYC\n");getch();
+									}				
+														
+													
+						}	//koniec	if(licz1==3)
+						
+									
+						else{}			
+								
+						
+			}	// koniec elsexx5										
+																
+						
+						
+//printf("int poszerz()\n");getch();
+	
+
+//printf("licz1=%d\n",licz1);
+
+//getch();
+
+
+
+
+		return 0;
+
+		}	//	koniec int poszerz(int x2, int y2)
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+//---------------------------------------------------------
+//---------------------------------------------------------
+//------------------------------------------------------------
+//-------     Funkcja  modulpowiekszania          ------------
+//-------------		oraz		----------------------
+//------	Sprawdza czy w tej nowej kolumnie lub wierszu- 
+//------	jest jakis statek jesli tak to znowu powieksza
+//------	o jeden wiersz lub kolumne--------------------
+//------	jest "powiazany z modulzakresu		------
+//------------------------------------------------------------
+	
+	
+
+
+
+void modulpowiekszania (char planszakomp011[][10],int x21, int y21,int *ey011,int *ex011,int *ey111,int *ex111)			
+		{	
+						//y2-1 bo narazie sprawdzamy pierwszy raz i dla dwu masztowca 
+						//dla 3 masztowca by bylo np y1-2
+
+//printf("poczatek  void modulpowiekszania ()\n");getch();
+
+					
+																			
+			int l=0,p=0,g=0,d=0;								
+								
+	if((x21==1||x21==2 ||x21==3 ||x21==4 ||x21==5||x21==6||x21==7||x21==8) && (y21==1||y21==2 ||y21==3 ||y21==4 ||y21==5||y21==6 ||y21==7 ||y21==8))			
+		{							
+		//printf("przed   przeloncznik1\n\n\n");	
+						
+	/*funkcja*/		przeloncznik(x21,y21,ex011,ey011,ex111,ey111,&l,&p,&g,&d);//zezwala na wykonanie ponizszych kodow
+		}
+	else
+		{
+		//printf("przed   przeloncznik2\n\n\n");		
+			
+	/*funkcja*/		przeloncznik2(x21,y21,ex011,ey011,ex111,ey111,&l,&p,&g,&d);//zezwala na wykonanie ponizszych kodow
+		}																	
+								
+																												
+		
+															
+		//--------------------------------------------------------------------------------------
+
+				//int i=0,j=0;	
+							
+					
+				if(l==1)	
+				{						
+				if(planszakomp011[x21][y21-1-*ey011]=='g')	//lewo
+					{	
+						
+					*ey011=*ey011+1;
+			
+										
+					//printf("if(planszakomp01[%d][%d]=='g')	//lewo\n",x21,y21-1-*ey011);getch();							
+											
+					}			
+					else 
+					{	
+						
+					}	
+				}
+				else{}
+									
+					
+									
+					
+				if(p==1)
+				{			
+				if(planszakomp011[x21][y21+1+*ey111]=='g')	//prawo
+					{	
+						
+					*ey111=*ey111+1;	
+				
+										
+					//printf("planszakomp011[%d][%d]=='g')	//prawo\n",x21,y21+1+*ey111);getch();				
+											
+					}										
+					else  
+					{
+						
+					}
+				}	
+				else{}						
+					
+					
+										
+					
+					if(g==1)
+					{
+					if(planszakomp011[x21-1-*ex011][y21]=='g')	//gora
+						{	
+								
+						*ex011=*ex011+1;	
+					
+										
+						//printf("else if(planszakomp01[%d][%d]=='g',,)	//gora\n",x21-1-*ex011,y21);getch();			
+							
+						}	
+						else 
+						{
+						
+						}
+					}					
+					else{}					
+					
+					
+					
+						if(d==1)
+						{
+				 		if(planszakomp011[x21+1+*ex111][y21]=='g')  //dol
+							{	
+											
+							*ex111=*ex111+1;	
+							
+							//printf("else if(planszakomp011[%d][%d]=='g')  //dol\n",x21+j-1-*ex011,y21+i-1-*ey011);getch();			
+									
+																								
+							}																	
+							else																	
+								{
+								
+								//printf("NIC NIE BYLO ZMIENAMNE\n");getch();		
+									
+								}
+						}	
+						else{}
+			
+
+
+
+					
+			//przeloncznik(x21,y21,ex011,ey011,ex111,ey111,&l,&p,&g,&d);
+																			
+											
+					
+
+		//--------------------------------------------------------------------------------------
+		
+		
+
+
+//printf("koniec  void modulpowiekszania (char planszakomp011[][10],int x21, int y21,int *ey011,int *ex011,int *ey111,int *ex111)\n");getch();
+	
+
+
+						
+		}	// koniec  void modulpowiekszania ()
+
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+//---------------------------------------------------------
+//---------------------------------------------------------
+
+
+
+
+//----------------------------------------------------------------
+//-------	Funkcja modulzakresu	--------------------------
+//-------	gdy modulpowiekszania powiekszy tablice ----------
+//-------	(w tablicy planszakomp potencjalne miejsce)-------
+//-------	w ktorym znajduje sie jakis statek to ten --------
+//-------	modul sprawdza dla nowej powiekszonej tablicy-----
+//-------	w jakim miejscu znajduja sie statki do odstrzalu--
+//-------	(jest powiazany z modulpowiekszania)bo sprawdza---
+//-------	tak dlugo az sasiad nie bedzie statkiem ----------
+//-------	("Sprawdza czy w tej nowej kolumnie lub wierszu---
+//-------	 jest jakis statek") 	--------------------------
+//-------	(czyli max moze byc 4 maszty wtedy od razu wiemy--
+//-------	ze to jest 4 masztowiec	)		----------
+//----------------------------------------------------------------
+//------------------DLA coraz wiekszej tablicy sprawdza ilosc wystapien
+//------------------ 'g'(masztow)(dla sasiednich pol + pole glowne (strzalu)
+//------------------i ustawia licz (ilosc wystapien 'g')----------
+//----------------------------------------------------------------
+
+
+
+void modulzakresu (char planszakomp011[][10],int x21, int y21,int *ey011,int *ex011,int *ey111,int *ex111,int *licz11,int mniejx21,int mniejy21,int mniejxp21,int mniejyp21)
+
+		{
+			//dla powiekszonej tablicy wyszukiwan
+
+//printf("void modulzakresu () \n");
+
+
+
+			//printf("	 x21=%d  y21=%d \n",x21,y21);		
+			//printf("	mniejx21=%d  mniejy21=%d   mniejxp21=%d  mniejyp21=%d\n\n",mniejx21,mniejy21,mniejxp21,mniejyp21);getch();		
+			
+
+
+		//--------------------------------------------------------------------------------------
+
+			
+			int i=0,j=0;
+			
+
+					for(i=0;i<3+*ey011+*ey111-mniejy21;i++)
+						{
+							for(j=0;j<3+*ex011+*ex111-mniejx21;j++)
+								{
+									
+								if(planszakomp011[x21+j-1-*ex011+mniejxp21][y21+i-1-*ey011+mniejyp21]=='g')
+									{
+										
+									*licz11=*licz11+1;
+									//printf("\tvoid modulzakresu");
+								
+									//printf("\t\txx++ if(planszakomp01[%d][%d]=='g');\n",x21+j-1-*ex011+mniejxp21,y21+i-1-*ey011+mniejyp21);
+								
+									}
+								else
+									{
+					
+									//printf("\txx++ if(planszakomp01[%d][%d]=='890');\n",x21+j-1-*ex011+mniejxp21,y21+i-1-*ey011+mniejyp21);
+							
+										
+									}
+								}
+						 }
+
+		//---------------------------------------------------------------------------------------
+
+
+//printf("\t\tlicz11=%d\n",*licz11);	
+
+//printf("\tKONIEC MODUL ZAKRESU\n");getch();
+		}	// koniec 	modulzakresu ()
+
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+//---------------------------------------------------------
+//---------------------------------------------------------
